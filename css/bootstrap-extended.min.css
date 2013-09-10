@@ -1,0 +1,216 @@
+/* Fonts
+-------------------------------------------------- */
+@font-face {
+  font-family: 'Telex';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Telex-Regular'), url(http://themes.googleusercontent.com/static/fonts/telex/v1/QBUn5F7b-9Ulki7K75J1Bw.woff) format('woff');
+}
+/* Body and structure
+-------------------------------------------------- */
+body {
+  position: relative;
+  padding-top: 80px;
+  background-color: #fff;
+  background-image: url(../images/background.png);
+  background-repeat: repeat;
+  background-attachment: fixed;
+}
+
+h1 small, h3 small {
+    font-size: 14px;
+	padding-left: 5px;
+}
+pre { opacity: .6;}
+pre:hover{ opacity: 1; cursor:pointer;}
+
+.thumbnails {
+	list-style: none;
+	*zoom: 1;
+}
+
+.thumbnails:before,
+.thumbnails:after {
+	display: table;
+	content: "";
+}
+
+.thumbnails:after {
+	clear: both;
+}
+
+.row-fluid .thumbnails {
+	margin-left: 0;
+}
+
+.thumbnails > li {
+	float: left;
+	margin-bottom: 18px;
+	margin-left: 2s0px;
+}
+.thumbnails > li  > a{
+	text-decoration: none;
+	font-size: 12px;
+}
+
+.thumbnails > li  > a:hover {
+	font-weight: bold;
+}
+
+.thumbnail {
+	display: block;
+	font-family: 'Open Sans', sans-serif;
+	background:white;
+	padding: 4px;
+	border: 1px solid #ddd;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+	-webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075);
+	-moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075);
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075);
+}
+
+a.thumbnail:hover {
+	border-color: #0088cc;
+	-webkit-box-shadow: 0 1px 4px rgba(0, 105, 214, 0.25);
+	-moz-box-shadow: 0 1px 4px rgba(0, 105, 214, 0.25);
+	box-shadow: 0 1px 4px rgba(0, 105, 214, 0.25);
+}
+
+.thumbnail > img {
+	display: block;
+	max-width: 100%;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+.thumbnail .caption {
+	padding: 9px;
+	background:white;
+	text-align:center;
+}
+
+.social_icons {
+	margin: 13px 0px 0px;
+}
+.social_icons li {
+  	display: inline-block;
+  	height: 24px;
+  	width: 24px; 
+}
+.social_icons li a {
+	display: inline-block;
+	position: relative;
+	text-indent: -9999px;
+	height: 34px;
+  	width: 34px;
+}
+.social_icons li a span {
+	position: absolute;
+	top: 0; 
+	left: 0; 
+	bottom: 0; 
+	right: 0;
+}
+.social_icons li.facebook a {
+	background: url(../images/facebook.png) no-repeat;
+}
+.social_icons li.twitter a {
+	background: url(../images/twitter.png) no-repeat;
+}
+.social_icons li.googleplus a {
+	background: url(../images/googleplus.png) no-repeat;
+}
+.social_icons li.linkedin a {
+	background: url(../images/linkedin.png) no-repeat;
+}
+.social_icons li.github a {
+	background: url(../images/GitHub.png) no-repeat;
+}
+
+/* Social proof buttons from GitHub & Twitter */
+.social {
+  padding: 15px 0;
+  text-align: center;
+  background-color: #f5f5f5;
+  border-top: 1px solid #fff;
+  border-bottom: 1px solid #ddd;
+}
+
+/* Quick links on Home */
+.social-buttons {
+  margin-left: 0;
+  margin-bottom: 0;
+  padding-left: 0;
+  list-style: none;
+}
+.social-buttons li {
+  display: inline-block;
+  padding: 5px 0;
+  line-height: 1;
+  *display: inline;
+  *zoom: 1;
+  vertical-align: middle;
+}
+
+#credittuamc{
+	padding: 3px 0px 3px;
+}
+
+/* Prettify
+-------------------------------------------------- */
+.com { color: #93a1a1; }
+.lit { color: #195f91; }
+.pun, .opn, .clo { color: #93a1a1; }
+.fun { color: #dc322f; }
+.str, .atv { color: #D14; }
+.kwd, .prettyprint .tag { color: #1e347b; }
+.typ, .atn, .dec, .var { color: teal; }
+.pln { color: #48484c; }
+
+.prettyprint {
+  padding: 8px;
+  border: 1px solid #e1e1e8;
+}
+.prettyprint.linenums {
+  -webkit-box-shadow: inset 40px 0 0 #fbfbfc, inset 41px 0 0 #ececf0;
+     -moz-box-shadow: inset 40px 0 0 #fbfbfc, inset 41px 0 0 #ececf0;
+          box-shadow: inset 40px 0 0 #fbfbfc, inset 41px 0 0 #ececf0;
+}
+
+/* Specify class=linenums on a pre to get line numbering */
+ol.linenums {
+  margin: 0 0 0 33px; /* IE indents via margin-left */
+}
+ol.linenums li {
+  padding-left: 12px;
+  color: #bebec5;
+  line-height: 20px;
+  text-shadow: 0 1px 0 #fff;
+}
+
+/* Responsive Docs
+-------------------------------------------------- */
+@media (max-width: 480px) {
+
+	/* Reduce padding above jumbotron */
+	body { padding-top: 70px; }
+	h1{ font-size: 30px; }
+
+}
+
+
+@media (max-width: 768px) {
+
+	/* Remove any padding from the body */
+	body { padding-top: 0; }
+  
+}
+
+@media (min-width: 768px) and (max-width: 980px) {
+
+	/* Remove any padding from the body */
+	body { padding-top: 0; }
+
+}
