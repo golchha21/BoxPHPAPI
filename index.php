@@ -21,12 +21,12 @@
 		<meta property="og:type" content="website">
 		<meta property="og:url" content="http://www.ulhas.net/GitHub/<?php echo _CODENAME; ?>">
 		<meta property="og:image" content="http://www.ulhas.net/GitHub/<?php echo _CODENAME; ?>/images/chart.png">
-		<meta property="og:description" content="<?php echo _CODENAME; ?> - The perfect webmaster's toolkit.">
+		<meta property="og:description" content="<?php echo _CODENAME; ?> - Unofficial BoxPHPAPI v2 based on the API documentations.">
 		
 		<meta name="twitter:card" content="summary">
 		<meta name="twitter:url" content="http://www.ulhas.net/GitHub/<?php echo _CODENAME; ?>">
 		<meta name="twitter:title" content="<?php echo _CODENAME; ?>">
-		<meta name="twitter:description" content="<?php echo _CODENAME; ?> - The perfect webmaster's toolkit.">
+		<meta name="twitter:description" content="<?php echo _CODENAME; ?> - Unofficial BoxPHPAPI v2 based on the API documentations.">
 		<meta name="twitter:image" content="http://www.ulhas.net/GitHub/<?php echo _CODENAME; ?>/images/chart.png">
 		<meta name="twitter:site" content="@golchha21">
 		<meta name="twitter:creator" content="@golchha21">
@@ -137,7 +137,7 @@
 								<li><iframe class="github-btn" src="github-btn.html?user=golchha21&amp;repo=<?php echo _CODENAME; ?>&amp;type=fork&amp;count=true" allowtransparency="true" frameborder="0" height="20px" scrolling="0" width="102px"></iframe></li>
 								<li><iframe class="github-btn" src="github-btn.html?user=golchha21&type=follow&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="165" height="20"></iframe></li>
 								<li><a href="https://twitter.com/golchha21" class="twitter-follow-button" data-link-color="#0069D6" data-show-count="true">Follow @golchha21</a></li>
-								<li><a href="https://twitter.com/share" class="twitter-share-button" data-url="<?php echo _URL; ?>" data-text="The perfect webmaster's toolkit." data-via="golchha21">Tweet</a></iframe></li>
+								<li><a href="https://twitter.com/share" class="twitter-share-button" data-url="<?php echo _URL; ?>" data-text="Unofficial BoxPHPAPI v2 based on the API documentations." data-via="golchha21">Tweet</a></iframe></li>
 								<li><span class="g-plusone" data-size="tall" data-annotation="inline" data-width="120" data-href="<?php echo _URL; ?>"></span></li>
 								<li><span class="fb-like" data-href="<?php echo _URL; ?>" data-send="true" data-layout="button_count" data-width="150" data-show-faces="false"></span></li>
 							</ul>
