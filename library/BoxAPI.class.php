@@ -1,6 +1,6 @@
 <?php 
 	define( '_CODENAME', 'BoxPHPAPI'); 
-	define( '_VERSION', '1.0.0'); 
+	define( '_VERSION', '1.0.1'); 
 	define( '_URL', 'https://github.com/golchha21/BoxPHPAPI');
 	error_reporting(E_ERROR);
 	
@@ -177,15 +177,15 @@
 				return false;
 			}
 			if($json){
-				return json_decode($content, true);
-			} else {
 				return $content;
+			} else {
+				return json_decode($content, true);
 			}
 		}
 		
 		/* Loads the token */
 		public function load_token() {
-			$array = $this->read_token('file', true);
+			$array = $this->read_token('file');
 			if(!$array){
 				return false;
 			} else {
@@ -193,7 +193,14 @@
 					$this->error = $array['error_description'];
 					return false;
 				} elseif($this->expired($array['expires_in'], $array['timestamp'])){
-					$this->get_code();
+					$this->refresh_token = $array['refresh_token'];
+					$token = $this->get_token(NULL, true);
+					if($this->write_token($token, 'file')){
+						$array = json_decode($token, true);
+						$this->refresh_token = $array['refresh_token'];
+						$this->access_token = $array['access_token'];
+						return true;
+					}
 				} else {
 					$this->refresh_token = $array['refresh_token'];
 					$this->access_token = $array['access_token'];
