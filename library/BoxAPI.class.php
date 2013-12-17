@@ -115,9 +115,7 @@
 		
 		public function create_folder($name, $parent_id) {
 			$url = $this->build_url("/folders");
-			$id = json_encode(array('id' => $parent_id));
-			$params = array('name' => $name, 'parent' => $id, 'id' => $parent_id);
-			//$params = array('name' => $name, 'parent' => $parent_id, 'id' => $parent_id);
+			$params = array('name' => $name, 'parent' => array('id' => $parent_id));
 			return json_decode($this->post($url, $params), true);
 		}
 		
@@ -257,8 +255,8 @@
 			curl_setopt($ch, CURLOPT_URL, $url);
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 			curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-			curl_setopt($ch, CURLOPT_POST, true);
-			curl_setopt($ch, CURLOPT_POSTFIELDS, $params);
+			curl_setopt($ch, CURLOPT_POST, count($params));
+			curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($params));
 			$data = curl_exec($ch);
 			curl_close($ch);
 			return $data;
