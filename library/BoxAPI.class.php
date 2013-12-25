@@ -33,6 +33,7 @@
 			} else {
 				echo $url = $this->authorize_url . '?' . http_build_query(array('response_type' => 'code', 'client_id' => $this->client_id, 'redirect_uri' => $this->redirect_uri));
 				header('location: ' . $url);
+				exit();
 			}
 		}
 		
@@ -40,7 +41,7 @@
 		public function get_token($code = '', $json = false) {
 			$url = $this->token_url;
 			if(!empty($this->refresh_token)){
-				$params = array('refresh_token' => $this->refresh_token, 'grant_type' => 'refresh_token', 'client_id' => $this->client_id, 'client_secret' => $this->client_secret);
+				$params = array('grant_type' => 'refresh_token', 'refresh_token' => $this->refresh_token, 'client_id' => $this->client_id, 'client_secret' => $this->client_secret);
 			} else {
 				$params = array('grant_type' => 'authorization_code', 'code' => $code, 'client_id' => $this->client_id, 'client_secret' => $this->client_secret);
 			}
@@ -255,8 +256,8 @@
 			curl_setopt($ch, CURLOPT_URL, $url);
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 			curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-			curl_setopt($ch, CURLOPT_POST, count($params));
-			curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($params));
+			curl_setopt($ch, CURLOPT_POST, true);
+			curl_setopt($ch, CURLOPT_POSTFIELDS, $params);
 			$data = curl_exec($ch);
 			curl_close($ch);
 			return $data;
