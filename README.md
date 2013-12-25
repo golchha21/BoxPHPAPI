@@ -12,6 +12,7 @@ Unofficial BoxPHPAPI v2 based on the API documentations.
 	* Lists the collaborators
 	* Lists the folders/files
 	* Updates folder details
+	* Creates Folder
 * Files:
 	* Fetches the file details
 	* Uploads file
