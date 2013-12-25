@@ -117,7 +117,7 @@
 		public function create_folder($name, $parent_id) {
 			$url = $this->build_url("/folders");
 			$params = array('name' => $name, 'parent' => array('id' => $parent_id));
-			return json_decode($this->post($url, $params), true);
+			return json_decode($this->post($url, json_encode($params)), true);
 		}
 		
 		/* Modifies the folder details as per the api */
@@ -251,7 +251,7 @@
 			return $data;
 		}
 		
-		private static function post($url, array $params = array()) {
+		private static function post($url, $params) {
 			$ch = curl_init();
 			curl_setopt($ch, CURLOPT_URL, $url);
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
