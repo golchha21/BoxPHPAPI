@@ -1,3 +1,7 @@
+### 1.0.3: December 26th, 2013
+* Function delete_file added
+* Function delete_folder added
+
 ### 1.0.2: December 25th, 2013
 * Post method updated.
 * Function create_folder now working
