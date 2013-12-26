@@ -17,7 +17,7 @@
 			$box->get_code();
 		}
 	}
-	
+
 	// User details
 	$box->get_user();
 	
@@ -36,9 +36,16 @@
 	// Get folder collaborators list
 	$box->get_folder_collaborators('FOLDER ID');
 	
+	// Create folder
+	$box->create_folder('FOLDER NAME', 'PARENT FOLDER ID');
+	
 	// Update folder details
 	$details['name'] = 'NEW FOLDER NAME';
 	$box->update_folder('FOLDER ID', $details);
+	
+	// Delete folder
+	$opts['recursive'] = 'true';
+	$box->delete_folder('FOLDER ID', $opts);
 	
 	// Get file details
 	$box->get_file_details('FILE ID');
@@ -50,4 +57,11 @@
 	$details['name'] = 'NEW FILE NAME';
 	$details['description'] = 'NEW DESCRIPTION FOR THE FILE';
 	$box->update_file('FILE ID', $details);
+	
+	// Delete file
+	$box->delete_file('FILE ID');
+	
+	if (isset($box->error)){
+		echo $box->error . "\n";
+	}
 ?>
