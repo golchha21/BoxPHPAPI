@@ -13,10 +13,12 @@ Unofficial BoxPHPAPI v2 based on the API documentations.
 	* Lists the folders/files
 	* Updates folder details
 	* Creates Folder
+	* Deletes Folder & its content
 * Files:
 	* Fetches the file details
 	* Uploads file
 	* Updates file details
+	* Deletes file
 
 ## Support
 Use the [GitHub Issue Tracker](http://goo.gl/eaa8GC) to ask questions and get support.
