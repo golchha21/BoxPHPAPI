@@ -125,7 +125,18 @@
 			$url = $this->build_url("/folders/$folder");
 			return json_decode($this->put($url, $params), true);
 		}
-			
+		
+		/* Deletes a folder */
+		public function delete_folder($folder, array $opts) {
+			echo $url = $this->build_url("/folders/$folder", $opts);
+			$return = json_decode($this->delete($url), true);
+			if(empty($return)){
+				return 'The folder has been deleted.';
+			} else {
+				return $return;
+			}
+		}
+
 		/* Get the details of the mentioned file */
 		public function get_file_details($file, $json = false) {
 			$url = $this->build_url("/files/$file");
@@ -147,6 +158,17 @@
 		public function update_file($file, array $params) {
 			$url = $this->build_url("/files/$file");
 			return json_decode($this->put($url, $params), true);
+		}
+
+		/* Deletes a file */
+		public function delete_file($file) {
+			$url = $this->build_url("/files/$file");
+			$return = json_decode($this->delete($url),true);
+			if(empty($return)){
+				return 'The file has been deleted.';
+			} else {
+				return $return;
+			}
 		}
 		
 		/* Saves the token */
@@ -270,6 +292,18 @@
 			curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 			curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'PUT');
 			curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($params));
+			$data = curl_exec($ch);
+			curl_close($ch);
+			return $data;
+		}
+		
+		private static function delete($url, $params = '') {
+			$ch = curl_init();
+			curl_setopt($ch, CURLOPT_URL, $url);
+			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+			curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+			curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'DELETE');
+			curl_setopt($ch, CURLOPT_POSTFIELDS, $params);
 			$data = curl_exec($ch);
 			curl_close($ch);
 			return $data;
