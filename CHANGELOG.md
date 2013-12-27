@@ -1,3 +1,6 @@
+### 1.0.4: December 27th, 2013
+* Function get_links added
+
 ### 1.0.3: December 26th, 2013
 * Function delete_file added
 * Function delete_folder added
