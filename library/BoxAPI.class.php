@@ -114,6 +114,19 @@
 			return array_filter($return);
 		}
 		
+		/* Lists the files in the mentioned folder */
+		public function get_links($folder) {
+			$data = $this->get_folder_items($folder);
+			foreach($data['entries'] as $item){
+				$array = '';
+				if($item['type'] == 'web_link'){
+					$array = $item;
+				}
+				$return[] = $array;
+			}
+			return array_filter($return);
+		}
+		
 		public function create_folder($name, $parent_id) {
 			$url = $this->build_url("/folders");
 			$params = array('name' => $name, 'parent' => array('id' => $parent_id));
