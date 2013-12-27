@@ -106,6 +106,9 @@
 	// All Files in a particular folder
 	$box->get_files('FOLDER ID');
 	
+	// All Web links in a particular folder
+	$box->get_links('FOLDER ID');
+	
 	// Get folder collaborators list
 	$box->get_folder_collaborators('FOLDER ID');
 	
