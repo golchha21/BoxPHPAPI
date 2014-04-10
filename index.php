@@ -119,6 +119,10 @@
 	$details['name'] = 'NEW FOLDER NAME';
 	$box->update_folder('FOLDER ID', $details);
 	
+	// Share folder
+	$params['shared_link']['access'] = 'ACCESS TYPE'; //open|company|collaborators
+	print_r($box->share_folder('FOLDER ID', $params));
+	
 	// Delete folder
 	$opts['recursive'] = 'true';
 	$box->delete_folder('FOLDER ID', $opts);
@@ -133,6 +137,10 @@
 	$details['name'] = 'NEW FILE NAME';
 	$details['description'] = 'NEW DESCRIPTION FOR THE FILE';
 	$box->update_file('FILE ID', $details);
+	
+	// Share file
+	$params['shared_link']['access'] = 'ACCESS TYPE'; //open|company|collaborators
+	print_r($box->share_file('File ID', $params));
 	
 	// Delete file
 	$box->delete_file('FILE ID');
