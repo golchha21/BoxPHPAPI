@@ -149,6 +149,18 @@
 				return $return;
 			}
 		}
+		
+		/* Shares a folder */
+		public function share_folder($folder, array $params) {
+			$url = $this->build_url("/folders/$folder");
+			return json_decode($this->put($url, $params), true);
+		}
+		
+		/* Shares a file */
+		public function share_file($file, array $params) {
+			$url = $this->build_url("/files/$file");
+			return json_decode($this->put($url, $params), true);
+		}
 
 		/* Get the details of the mentioned file */
 		public function get_file_details($file, $json = false) {
