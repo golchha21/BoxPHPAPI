@@ -1,3 +1,7 @@
+### 1.0.5: April 10th, 2014
+* Function share_folder added
+* Function share_file added
+
 ### 1.0.4: December 27th, 2013
 * Function get_links added
 
