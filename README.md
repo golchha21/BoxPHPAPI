@@ -8,17 +8,19 @@ Unofficial BoxPHPAPI v2 based on the API documentations.
 ## Features
 * Fetches the user details.
 * Folder:
-	* Lists the items
-	* Lists the collaborators
-	* Lists the folders/files
-	* Updates folder details
-	* Creates Folder
-	* Deletes Folder & its content
+	* List the items
+	* List the collaborators
+	* List the folders/files
+	* Update folder details
+	* Create Folder
+	* Delete Folder & its content
+	* Share Folder
 * Files:
 	* Fetches the file details
-	* Uploads file
-	* Updates file details
-	* Deletes file
+	* Upload file
+	* Update file details
+	* Delete file
+	* Share file
 
 ## Support
 Use the [GitHub Issue Tracker](http://goo.gl/eaa8GC) to ask questions and get support.
