@@ -1,6 +1,6 @@
 <?php 
 	define( '_CODENAME', 'BoxPHPAPI'); 
-	define( '_VERSION', '1.0.5'); 
+	define( '_VERSION', '1.0.6'); 
 	define( '_URL', 'https://github.com/golchha21/BoxPHPAPI');
 	error_reporting(E_ERROR);
 	

@@ -1,3 +1,6 @@
+### 1.0.6: Feb 28th, 2015
+* removed an ECHO statement
+
 ### 1.0.5: April 10th, 2014
 * Function share_folder added
 * Function share_file added
