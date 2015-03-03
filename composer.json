@@ -3,19 +3,17 @@
     "type": "API",
     "description": "Unofficial BoxPHPAPI v2",
     "keywords": ["Box","BoxAPI","PHP","API"],
-    "homepage": "http://goo.gl/MKcxSd",
+    "homepage": "http://www.ulhas.net/GitHub/BoxPHPAPI/",
     "license": "Apache License 2.0",
     "authors": [
         {
             "name": "Ulhas Vardhan Golchha",
-            "email": "golchha21@gmail.com",
             "homepage": "http://www.ulhas.net/",
             "role": "Developer"
         }
     ],
     "support": {
-        "issues": "http://goo.gl/eaa8GC",
-        "demo": "http://goo.gl/MKcxSd",
+        "issues": "https://github.com/golchha21/BoxPHPAPI/issues",
         "source": "https://github.com/golchha21/BoxPHPAPI"
     }
 }
