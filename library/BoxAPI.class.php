@@ -174,9 +174,10 @@
 		}
 		
 		/* Uploads a file */
-		public function put_file($filename, $parent_id) {
-			$url = $this->upload_url . '/files/content';
-			$params = array('filename' => "@" . realpath($filename), 'parent_id' => $parent_id, 'access_token' => $this->access_token);
+		public function put_file($file, $name, $parent_id) {
+			$url = $this->build_url('/files/content', array(), $this->upload_url);
+			$attrs = array('name' => $name, 'parent' => array('id' => $parent_id));
+			$params = array('attributes' => json_encode($attrs), 'file' => "@" . realpath($file));
 			return json_decode($this->post($url, $params), true);
 		}
 		
@@ -257,9 +258,10 @@
 		}
 		
 		/* Builds the URL for the call */
-		private function build_url($api_func, array $opts = array()) {
+		private function build_url($api_func, array $opts = array(), $url) {
+			if(!$url) $url = $this->api_url;
 			$opts = $this->set_opts($opts);
-			$base = $this->api_url . $api_func . '?';
+			$base = $url . $api_func . '?';
 			$query_string = http_build_query($opts);
 			$base = $base . $query_string;
 			return $base;
