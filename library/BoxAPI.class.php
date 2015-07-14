@@ -145,6 +145,12 @@
 			return json_decode($this->post($url, json_encode($params)), true);
 		}
 		
+		/* Download a file */
+	    public function download_file($file_id, $destination) {
+	        $url = $this->build_url("/files/$file_id/content");
+	        return json_decode($this->download($url, $destination));
+	    }
+
 		/*** ===== END ===== */
 		
 		
@@ -384,6 +390,19 @@
 				return false;
 			}
 		}
+		
+	    private static function download($url, $destination){
+	        $ch = curl_init();
+	        $file = fopen($destination, "w+");
+	        curl_setopt($ch, CURLOPT_URL, $url);
+	        curl_setopt($ch, CURLOPT_TIMEOUT, 50);
+	        curl_setopt($ch, CURLOPT_FILE, $file); // write curl response to file
+	        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+	        $data = curl_exec($ch);
+	        curl_close ($ch);
+	        fclose($file);
+	        return $data;
+	    }
 		
 		private static function get($url) {
 			$ch = curl_init();
