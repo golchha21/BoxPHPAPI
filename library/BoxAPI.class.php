@@ -53,6 +53,13 @@
 		}
 		
 		/** MFI METHODS */
+		/* Create comment */
+        public function create_comment($fileID, $message){
+            $url = $this->build_url("/comments");
+            $params = array("item" => array("type"=>"file","id"=>$fileID), "message" => $message);
+            return json_decode($this->post($url, json_encode($params)), true);
+        }
+
 		/* Get comments */
 		public function get_comments($file) {
 			$url = $this->build_url("/files/$file/comments");
