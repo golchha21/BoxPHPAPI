@@ -56,13 +56,13 @@
 		/* Get comments */
 		public function get_comments($file) {
 			$url = $this->build_url("/files/$file/comments");
-			return json_decode($this->put($url), true);
+			return json_decode($this->get($url), true);
 		}
 		
 		/* Get tasks */
 		public function get_tasks($file) {
 			$url = $this->build_url("/files/$file/tasks");
-			return json_decode($this->put($url), true);
+			return json_decode($this->get($url), true);
 		}
 		
 		public function create_user($login, $name){
