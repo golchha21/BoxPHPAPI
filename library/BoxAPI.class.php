@@ -2,6 +2,7 @@
 	define( '_CODENAME', 'BoxPHPAPI'); 
 	define( '_VERSION', '1.0.6'); 
 	define( '_URL', 'https://github.com/golchha21/BoxPHPAPI');
+	define( '_ENTERPRISE_ID', '371568');
 	error_reporting(E_ERROR);
 	
 	class Box_API {
@@ -110,11 +111,11 @@
 			return json_decode($this->get($url));
 		}
 		
-		public function invite_user($login, $name){
-			$url = $this->build_url("/invites");
-			$params = array('login' =>$login, 'name' => $name) ;
-			return json_decode($this->post($url, json_encode($params)), true);
-		}
+		public function invite_user($login){
+            $url = $this->build_url("/invites");
+            $params = array('enterprise' => array('id' => _ENTERPRISE_ID), 'actionable_by' => array('login' => $login));
+            return json_decode($this->post($url, json_encode($params)), true);
+        }
 		
 		private function get_groups(){
 			$url = $this->build_url("/groups");
