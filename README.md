@@ -1,6 +1,6 @@
 # [BoxPHPAPI](http://goo.gl/7V1ayp)
 
-Unofficial BoxPHPAPI v2 based on the API documentations.
+Unofficial BoxPHPAPI v3 based on the API documentations located [here](https://box-content.readme.io).
 
 ## Demonstration
 * [BoxPHPAPI](http://goo.gl/MKcxSd)
