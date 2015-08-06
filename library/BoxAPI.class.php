@@ -174,9 +174,12 @@
 		}
 		
 		/* Uploads a file */
-		public function put_file($filename, $parent_id) {
-			$url = $this->upload_url . '/files/content';
-			$params = array('filename' => "@" . realpath($filename), 'parent_id' => $parent_id, 'access_token' => $this->access_token);
+		public function put_file($filename, $name ,$parent_id) {
+			$url = $this->build_url('/files/content', array(), $this->upload_url);
+			if(isset($name)){
+				$name = basename($filename);
+			}
+			$params = array('filename' => "@" . realpath($filename), 'name' => $name , 'parent_id' => $parent_id, 'access_token' => $this->access_token);
 			return json_decode($this->post($url, $params), true);
 		}
 		
@@ -257,9 +260,13 @@
 		}
 		
 		/* Builds the URL for the call */
-		private function build_url($api_func, array $opts = array()) {
+		private function build_url($api_func, array $opts = array(), $url) {
 			$opts = $this->set_opts($opts);
-			$base = $this->api_url . $api_func . '?';
+			if(isset($url)){
+				$base = $url . $api_func . '?';
+			}else{
+				$base = $this->api_url . $api_func . '?';
+			}
 			$query_string = http_build_query($opts);
 			$base = $base . $query_string;
 			return $base;
