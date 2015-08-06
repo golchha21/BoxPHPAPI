@@ -58,7 +58,7 @@
 	$box->get_file_details('FILE ID');
 	
 	// Upload file
-	$box->put_file('RELATIVE FILE URL', '0');
+	$box->put_file('RELATIVE FILE URL', 'FILE NAME', 'FOLDER ID');
 	
 	// Update file details
 	$details['name'] = 'NEW FILE NAME';
