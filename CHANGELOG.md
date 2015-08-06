@@ -1,3 +1,6 @@
+### 1.0.7: Aug 06th, 2015
+* Upload file function put_file updated as per the changes
+
 ### 1.0.6: Feb 28th, 2015
 * removed an ECHO statement
 
