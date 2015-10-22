@@ -78,10 +78,12 @@
 			return json_decode($this->post($url, json_encode($params)), true);
 		}
 		
-		public function mod_user($userID, $login, $name){
-			$url = $this->build_url("/users/".$userID);
-			$params = array('name' => $name) ;
-			return json_decode($this->put($url, $params), true);
+		public function get_user_by_login($login, $complete = false){
+			$fields = '';
+			if($complete)
+				$fields = '&fields=id,name,login,created_at,modified_at,language,space_amount,max_upload_size,status,avatar_url,space_used,can_see_managed_users,is_sync_enabled,is_external_collab_restricted,is_exempt_from_device_limits,is_exempt_from_login_verification';
+			$url = $this->build_url("/users")."&filter_term=$login".$fields;
+			return json_decode($this->get($url));
 		}
 		
 		public function get_users($limit = 100, $offset = 0){
