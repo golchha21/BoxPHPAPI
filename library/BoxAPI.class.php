@@ -1,8 +1,7 @@
 <?php 
 	define( '_CODENAME', 'BoxPHPAPI'); 
-	define( '_VERSION', '1.0.6'); 
-	define( '_URL', 'https://github.com/misterfifi1/BoxPHPAPI');
-	define( '_ENTERPRISE_ID', '371568');
+	define( '_VERSION', '1.1'); 
+	define( '_URL', 'https://github.com/misterfifi1');
 	error_reporting(E_ERROR);
 	
 	class Box_API {
@@ -16,6 +15,9 @@
 		public $token_url	 	= 'https://www.box.com/api/oauth2/token';
 		public $api_url 		= 'https://api.box.com/2.0';
 		public $upload_url 		= 'https://upload.box.com/api/2.0';
+		public $error_message	= '';
+		public $reponse_status	= ''; 			
+		public $asUser			= '';
 		public function __construct($client_id = '', $client_secret = '', $redirect_uri = '') {
 			if(empty($client_id) || empty($client_secret)) {
 				throw ('Invalid CLIENT_ID or CLIENT_SECRET or REDIRECT_URL. Please provide CLIENT_ID, CLIENT_SECRET and REDIRECT_URL when creating an instance of the class.');
@@ -24,6 +26,10 @@
 				$this->client_secret	= $client_secret;
 				$this->redirect_uri		= $redirect_uri;
 			}
+		}
+		
+		public function setAsUser($userID){
+			$this->asUser	= $userID;
 		}
 		
 		/* First step for authentication [Gets the code] */
@@ -54,13 +60,6 @@
 		}
 		
 		/** MFI METHODS */
-		/* Create comment */
-        public function create_comment($fileID, $message){
-            $url = $this->build_url("/comments");
-            $params = array("item" => array("type"=>"file","id"=>$fileID), "message" => $message);
-            return json_decode($this->post($url, json_encode($params)), true);
-        }
-
 		/* Get comments */
 		public function get_comments($file) {
 			$url = $this->build_url("/files/$file/comments");
@@ -91,6 +90,12 @@
 			return json_decode($this->get($url));
 		}
 		
+		/* Gets user details  by ID*/
+		public function get_user_by_id($id) {
+			$url = $this->build_url("/users/$id");
+			return json_decode($this->get($url),true);
+		}
+		
 		public function get_user_by_login($login){
 			$url = $this->build_url("/users")."&filter_term=$login";
 			return json_decode($this->get($url));
@@ -111,11 +116,11 @@
 			return json_decode($this->get($url));
 		}
 		
-		public function invite_user($login){
-            $url = $this->build_url("/invites");
-            $params = array('enterprise' => array('id' => _ENTERPRISE_ID), 'actionable_by' => array('login' => $login));
-            return json_decode($this->post($url, json_encode($params)), true);
-        }
+		public function invite_user($login, $name){
+			$url = $this->build_url("/invites");
+			$params = array('login' =>$login, 'name' => $name) ;
+			return json_decode($this->post($url, json_encode($params)), true);
+		}
 		
 		private function get_groups(){
 			$url = $this->build_url("/groups");
@@ -153,12 +158,6 @@
 			return json_decode($this->post($url, json_encode($params)), true);
 		}
 		
-		/* Download a file */
-	    public function download_file($file_id, $destination) {
-	        $url = $this->build_url("/files/$file_id/content");
-	        return json_decode($this->download($url, $destination));
-	    }
-
 		/*** ===== END ===== */
 		
 		
@@ -399,26 +398,38 @@
 			}
 		}
 		
-	    private static function download($url, $destination){
-	        $ch = curl_init();
-	        $file = fopen($destination, "w+");
-	        curl_setopt($ch, CURLOPT_URL, $url);
-	        curl_setopt($ch, CURLOPT_TIMEOUT, 50);
-	        curl_setopt($ch, CURLOPT_FILE, $file); // write curl response to file
-	        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
-	        $data = curl_exec($ch);
-	        curl_close ($ch);
-	        fclose($file);
-	        return $data;
-	    }
+		private function getStatus($code){
+			$returnedCode = array(100=>"Continue",101=>"Switching Protocols", 200=>"OK", 201=>"Created", 202=>"Accepted", 203=>"Non-Authoritative Information",
+					 204=>"No Content", 205=>"Reset Content", 206=>"Partial Content", 300=>"Multiple Choices", 301=>"Moved Permanently", 302=>"Found", 303=>"See Other",
+					 304=>"Not Modified", 305=>"Use Proxy", 306=>"(Unused)", 307=>"Temporary Redirect", 400=>"Bad Request", 401=>"Unauthorized", 402=>"Payment Required",
+					 403=>"Forbidden", 404=>"Not Found", 405=>"Method Not Allowed", 406=>"Not Acceptable", 407=>"Proxy Authentication Required", 408=>"Request Timeout",
+					 409=>"Conflict", 410=>"Gone", 411=>"Length Required", 412=>"Precondition Failed", 413=>"Request Entity Too Large", 414=>"Request-URI Too Long",
+					 415=>"Unsupported Media Type", 416=>"Requested Range Not Satisfiable", 417=>"Expectation Failed", 500=>"Internal Server Error", 501=>"Not Implemented",
+					 502=>"Bad Gateway", 503=>"Service Unavailable", 504=>"Gateway Timeout", 505=>"HTTP Version Not Supported");
+					
+			$this->reponse_status = $code;
+			$this->error_message = $returnedCode[$code];
+		}
 		
-		private static function get($url) {
+		private function get($url) {
 			$ch = curl_init();
 			curl_setopt($ch, CURLOPT_URL, $url);
-			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 			curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+			//curl_setopt($ch, CURLOPT_VERBOSE, 1);
+			//curl_setopt($ch, CURLOPT_HEADER, 1);
+			
+			if(!empty($this->asUser)) {
+				$headers = array();
+				$headers[] = "as-user:$this->asUser";
+				curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+			}
+			
 			$data = curl_exec($ch);
-			curl_close($ch);
+			$this->getStatus(curl_getinfo($ch, CURLINFO_HTTP_CODE));
+			
+			curl_close($ch, $data);
+			
 			return $data;
 		}
 		
