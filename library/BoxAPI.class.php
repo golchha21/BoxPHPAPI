@@ -179,7 +179,8 @@
 			if(isset($name)){
 				$name = basename($filename);
 			}
-			$params = array('filename' => "@" . realpath($filename), 'name' => $name , 'parent_id' => $parent_id, 'access_token' => $this->access_token);
+			$file = new \CURLFile($filename);
+			$params = array('file' =>  $file, 'name' => $name , 'parent_id' => $parent_id, 'access_token' => $this->access_token);
 			return json_decode($this->post($url, $params), true);
 		}
 		
