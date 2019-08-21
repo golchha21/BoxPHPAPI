@@ -21,6 +21,15 @@ Unofficial BoxPHPAPI v2 based on the API documentations.
 	* Update file details
 	* Delete file
 	* Share file
+	* Download file
+* Create & Get Comments
+* Get Tasks
+
+## Contributors
+- [misterfifi1](https://github.com/misterfifi1)
+- [irfanhanfi](https://github.com/irfanhanfi)
+- [weitzman](https://github.com/weitzman)
+- [jacquesgingras](https://github.com/jacquesgingras)
 
 ## Support
 Use the [GitHub Issue Tracker](http://goo.gl/eaa8GC) to ask questions and get support.
