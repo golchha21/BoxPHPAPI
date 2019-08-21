@@ -71,7 +71,10 @@
 	
 	// Delete file
 	$box->delete_file('FILE ID');
-	
+
+// Download file
+$box->download_file('FILE ID', 'DESTINATION');
+
 	if (isset($box->error)){
 		echo $box->error . "\n";
 	}

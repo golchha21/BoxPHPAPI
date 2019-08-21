@@ -144,6 +144,9 @@
 	
 	// Delete file
 	$box->delete_file('FILE ID');
+
+	// Download file
+	$box->download_file('FILE ID', 'DESTINATION');
 	
 	if (isset($box->error)){
 		echo $box->error . "\n";
@@ -158,9 +161,21 @@
 					<div class="span12">
 						<div class="social">
 							<ul class="social-buttons">
-								<li><iframe class="github-btn" src="github-btn.html?user=golchha21&amp;repo=<?php echo _CODENAME; ?>&amp;type=watch&amp;count=true" allowtransparency="true" frameborder="0" height="20px" scrolling="0" width="100px"></iframe></li>
-								<li><iframe class="github-btn" src="github-btn.html?user=golchha21&amp;repo=<?php echo _CODENAME; ?>&amp;type=fork&amp;count=true" allowtransparency="true" frameborder="0" height="20px" scrolling="0" width="102px"></iframe></li>
-								<li><iframe class="github-btn" src="github-btn.html?user=golchha21&type=follow&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="165" height="20"></iframe></li>
+                                <li>
+                                    <iframe class="github-btn"
+                                            src="github-btn.html?user=golchha21&amp;repo=<?php echo _CODENAME; ?>&amp;type=watch&amp;count=true"
+                                            allowtransparency="true" height="20px" scrolling="0" width="100px"></iframe>
+                                </li>
+                                <li>
+                                    <iframe class="github-btn"
+                                            src="github-btn.html?user=golchha21&amp;repo=<?php echo _CODENAME; ?>&amp;type=fork&amp;count=true"
+                                            allowtransparency="true" height="20px" scrolling="0" width="102px"></iframe>
+                                </li>
+                                <li>
+                                    <iframe class="github-btn"
+                                            src="github-btn.html?user=golchha21&type=follow&count=true"
+                                            allowtransparency="true" scrolling="0" width="165" height="20"></iframe>
+                                </li>
 								<li><a href="https://twitter.com/golchha21" class="twitter-follow-button" data-link-color="#0069D6" data-show-count="true">Follow @golchha21</a></li>
 								<li><a href="https://twitter.com/share" class="twitter-share-button" data-url="<?php echo _URL; ?>" data-text="Unofficial BoxPHPAPI v2 based on the API documentations." data-via="golchha21">Tweet</a></iframe></li>
 								<li><span class="g-plusone" data-size="tall" data-annotation="inline" data-width="120" data-href="<?php echo _URL; ?>"></span></li>
