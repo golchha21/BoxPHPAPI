@@ -1,3 +1,6 @@
+### 1.1.0: Aug 21th, 2019
+* Added a few more functionality as per [misterfifi1](https://github.com/misterfifi1)
+
 ### 1.0.7: Aug 06th, 2015
 * Upload file function put_file updated as per the changes
 
