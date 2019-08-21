@@ -18,7 +18,7 @@
 
 		public function __construct($client_id = '', $client_secret = '', $redirect_uri = '') {
 			if(empty($client_id) || empty($client_secret)) {
-				throw ('Invalid CLIENT_ID or CLIENT_SECRET or REDIRECT_URL. Please provide CLIENT_ID, CLIENT_SECRET and REDIRECT_URL when creating an instance of the class.');
+				throw new Exception('Invalid CLIENT_ID or CLIENT_SECRET or REDIRECT_URL. Please provide CLIENT_ID, CLIENT_SECRET and REDIRECT_URL when creating an instance of the class.');
 			} else {
 				$this->client_id 		= $client_id;
 				$this->client_secret	= $client_secret;
@@ -183,6 +183,14 @@
 			$params = array('file' =>  $file, 'name' => $name , 'parent_id' => $parent_id, 'access_token' => $this->access_token);
 			return json_decode($this->post($url, $params), true);
 		}
+
+		/* Uploads a file version */
+    public function put_file_version($filename, $file_id, $name = NULL) {
+      $url = $this->build_url("/files/$file_id/content", array(), $this->upload_url);
+      $file = new \CURLFile($filename);
+      $params = array('file' =>  $file, 'name' => $name , 'access_token' => $this->access_token);
+      return json_decode($this->post($url, $params), true);
+    }
 		
 		/* Modifies the file details as per the api */
 		public function update_file($file, array $params) {
@@ -261,7 +269,7 @@
 		}
 		
 		/* Builds the URL for the call */
-		private function build_url($api_func, array $opts = array(), $url) {
+		private function build_url($api_func, array $opts = array(), $url = NULL) {
 			$opts = $this->set_opts($opts);
 			if(isset($url)){
 				$base = $url . $api_func . '?';
