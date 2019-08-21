@@ -1,6 +1,6 @@
 {
     "name": "golchha21/boxphpapi",
-    "type": "API",
+  "type": "api",
     "description": "Unofficial BoxPHPAPI v2",
     "keywords": ["Box","BoxAPI","PHP","API"],
     "homepage": "http://www.ulhas.net/GitHub/BoxPHPAPI/",
@@ -15,5 +15,10 @@
     "support": {
         "issues": "https://github.com/golchha21/BoxPHPAPI/issues",
         "source": "https://github.com/golchha21/BoxPHPAPI"
+    },
+  "require": {
+    "ext-json": "*",
+    "ext-curl": "*",
+    "ext-simplexml": "*"
     }
 }
