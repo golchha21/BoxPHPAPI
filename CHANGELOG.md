@@ -1,3 +1,6 @@
+### 1.1.1: Dec 13th, 2019
+* Removed unwanted comments.
+
 ### 1.1.0: Aug 21th, 2019
 * Added a few more functionality as per [misterfifi1](https://github.com/misterfifi1)
 
