@@ -1,6 +1,6 @@
 <?php
 define('_CODENAME', 'BoxPHPAPI');
-define('_VERSION', '1.1.0');
+define('_VERSION', '1.1.1');
 define('_URL', 'https://github.com/golchha21/BoxPHPAPI');
 error_reporting(E_ERROR);
 
@@ -288,7 +288,7 @@ class Box_API
     public function share_folder($folder, array $params)
     {
         $url = $this->build_url("/folders/$folder");
-        return json_decode($this->put($url, $params), true);
+        return json_decode($this->put($url, array("shared_link" => $params)), true);
     }
 
     /* Shares a file */
@@ -497,8 +497,6 @@ class Box_API
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        //curl_setopt($ch, CURLOPT_VERBOSE, 1);
-        //curl_setopt($ch, CURLOPT_HEADER, 1);
 
         if (!empty($this->asUser)) {
             $headers = array();
