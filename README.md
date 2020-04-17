@@ -1,4 +1,6 @@
-# [BoxPHPAPI](http://goo.gl/7V1ayp)
+# [BoxPHPAPI](http://goo.gl/7V1ayp) 
+
+[![Total Downloads](https://img.shields.io/packagist/dt/golchha21/boxphpapi.svg?style=flat-square)](https://packagist.org/packages/golchha21/boxphpapi)
 
 Unofficial BoxPHPAPI v2 based on the API documentations.
 
