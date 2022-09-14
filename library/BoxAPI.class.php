@@ -313,10 +313,10 @@ class Box_API
     public function put_file($filename, $name, $parent_id)
     {
         $url = $this->build_url('/files/content', array(), $this->upload_url);
-        if (isset($name)) {
+        if (!isset($name)) {
             $name = basename($filename);
         }
-        $file = new CURLFile($filename);
+        $file = new CURLFile($filename, '', $name);
         $params = array('file' => $file, 'name' => $name, 'parent_id' => $parent_id, 'access_token' => $this->access_token);
         return json_decode($this->post($url, $params), true);
     }
